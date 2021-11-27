@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="my-3">Employee Dashbord</h3>
+            <label class="mr-2"> Search: </label>
+            <input type="text" [(ngModel)]="empid" placeholder="Serach any fields" class="my-2" />
+
+            <table border="1" width="100%" class="mt-3">
+                <tr>
+                    <th>SR.NO.</th>
+                    <th>NAME</th>
+                    <th>SIRNAME</th>
+                    <th>EMPID</th>
+                    <th>DESIGNATION</th>
+                    <th>ACCESS CARD STATUS</th>
+                </tr>
+                <tr *ngFor="let emp of employee | employeeIdFilter:empid;let i = index">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{emp.name}}</td>
+                    <td>{{emp.sirname}}</td>
+                    <td>{{emp.empid}}</td>
+                    <td>{{emp.designation}}</td>
+                    <td>
+                        {{emp.accessstatus}}
+                        <button class="ml-5 btn btn-secondary"
+                            *ngIf="username === 'admin@admin.com' 
+                            && password === '123' && emp.designation !== 'Manager'"
+                            (click)="changeStatus(i)"> Update
+                        </button>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+</div>
